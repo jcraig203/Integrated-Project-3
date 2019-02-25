@@ -1,0 +1,60 @@
+﻿@model IntegratedProject3.Models.Document
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Revisions</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Create New Revision", "Create", "Revisions", new { id = Model.id }, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Revisions.SingleOrDefault().DocumentTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Revisions.SingleOrDefault().DocCreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Revisions.SingleOrDefault().State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Revisions.SingleOrDefault().ActivationDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Revisions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocCreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivationDate)
+            </td>
+            <td>
+                
+                @Html.ActionLink("Edit", "Edit", "Revisions", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", "Revisions", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", "Revisions", new { id = item.id }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+
+</table>
+

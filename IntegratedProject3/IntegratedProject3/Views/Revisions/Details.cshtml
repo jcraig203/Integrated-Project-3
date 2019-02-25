@@ -1,0 +1,78 @@
+﻿@model IntegratedProject3.Models.Revision
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.DocumentTitle) Details</h2>
+
+<div>
+    @Html.ActionLink("Download", "Download", new{ docKey = @Model.fileStoreKey }, new { @class = "btn btn-primary btn-lg" })
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distributees)
+        </dt>
+        @foreach (var item in Model.Distributees)
+        {
+        <dd>
+            @Html.DisplayFor(model => item.FirstName)
+            @Html.DisplayFor(model => item.Surname)
+        </dd>
+        }
+
+
+    </dl>
+</div>
+<p>
+    @if (ViewBag.isDistributee != null)
+    {
+        if (!(ViewBag.isDistributee))
+        {
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-primary btn-lg" }) |
+                @Html.ActionLink("Back to List", "Details", "Documents", new { id = Model.document.id }, new { @class = "btn btn-primary btn-lg" })
+            </p>
+        }
+        else
+        {
+            <p>
+                @Html.ActionLink("Back to List", "Index", "Revisions", null, new { @class = "btn btn-primary btn-lg" })
+            </p>
+        }
+    } 
+
+
+</p>

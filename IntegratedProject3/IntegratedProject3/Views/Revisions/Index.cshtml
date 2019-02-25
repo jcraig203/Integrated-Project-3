@@ -1,0 +1,76 @@
+﻿@model IEnumerable<IntegratedProject3.Models.Revision>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Revisions</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RevisionNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocCreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.document.Author.UserName)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model ) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RevisionNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocCreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.document.Author.UserName)
+        </td>           
+            
+            @if (ViewBag.isAuthor != null)
+            {
+                if ((ViewBag.isAuthor))
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-primary" })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-primary" })
+                    </td>
+                }
+            }
+            
+
+
+    </tr>
+}
+
+</table>
